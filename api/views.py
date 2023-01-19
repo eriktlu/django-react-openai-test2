@@ -40,25 +40,23 @@ class GenerateResponse(APIView):
     # return render_template("index.html", result=result)
 
 
-def generate_prompt(text):
-    return """Suggest three names for an animal that is a superhero.
+# def generate_prompt(text):
+#     return """Suggest three names for an animal that is a superhero.
 
-Animal: Cat
-Names: Captain Sharpclaw, Agent Fluffball, The Incredible Feline
-Animal: Dog
-Names: Ruff the Protector, Wonder Canine, Sir Barks-a-Lot
-Animal: {}
-Names:""".format(
-        text.capitalize()
-    )
+# Animal: Cat
+# Names: Captain Sharpclaw, Agent Fluffball, The Incredible Feline
+# Animal: Dog
+# Names: Ruff the Protector, Wonder Canine, Sir Barks-a-Lot
+# Animal: {}
+# Names:""".format(
+#         text.capitalize()
+#     )
 
 
 
 
 def generate_script(text):
-    return """
-        Give me a javascript snippet that would 
-    """ + format(text.capitalize()) + """ Answer only in Javascript, no script tags, no additional text, only javascript code. 
+    return format(text.capitalize()) + """ Answer only in Javascript, no script tags, no additional text, only javascript code. 
 Html for the page is: <body>
     <div id='main'>
         <div id='app'><div class='center'><h1>Tere</h1><div><h1>Name my pet</h1><form><input type='text' name='animal' placeholder='Enter an animal' required=''><input type='submit' value='Generate names'></form></div></div></div>

@@ -44,10 +44,10 @@ const HomePage = (props) => {
     const renderHomePage = () => {
         return (
             <div>
-                <h1>Name my pet</h1>
+                <h1>Make a wish:</h1>
                 <form onSubmit={generateNamesClicked}>
-                    <input type="text" name="animal" placeholder="Enter an animal" onChange={handleTextChange} required />
-                    <input type="submit" value="Generate names" />
+                    <input type="text" name="animal" placeholder="Create a red ball with up and down bouncing animation.." onChange={handleTextChange} required />
+                    <input type="submit" value="Send" />
                 </form>
             </div>   
         );
