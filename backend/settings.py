@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-pjk8)-0bi=eg$qv1np+618cl@t+n9w3_c)x!@_4p6)9j#@5wnb'
 
 #OPEN AI API KEY
-OPENAI_KEY = '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'
+OPENAI_KEY = (os.environ.get("OPENAI_KEY", 'dev default value'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
