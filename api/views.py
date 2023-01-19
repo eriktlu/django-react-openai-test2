@@ -56,10 +56,10 @@ class GenerateResponse(APIView):
 
 
 def generate_script(text):
-    return format(text.capitalize()) + """ Answer only in Javascript, no script tags, no additional text, only javascript code. 
+    return format(text.capitalize()) + """ Answer only in Javascript, no script tags, no additional text, only javascript code. Do not use images, gifs or any other media, create everything yourself in javascript code. If you are not capable of doing what's asked then add a red text on top of the page saying: I am not capable of doing what you asked, sorry! 
 Html for the page is: <body>
     <div id='main'>
-        <div id='app'><div class='center'><h1>Tere</h1><div><h1>Name my pet</h1><form><input type='text' name='animal' placeholder='Enter an animal' required=''><input type='submit' value='Generate names'></form></div></div></div>
+        <div id='app'><div class='center'><div><h1>Make a wish:</h1><form><input type='text' name='animal' placeholder='Create a red ball with up and down bouncing animation..' required=''><input type='submit' value='Send'></form></div></div></div>
     </div>
 
     <script src='/static/frontend/main.js'></script>
@@ -93,7 +93,10 @@ Css for the page is:
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 60px;
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle, #272b4d 0%, #202123 100%)
   }
   .icon {
     width: 34px;
@@ -128,10 +131,24 @@ Css for the page is:
     border-radius: 4px;
     text-align: center;
     cursor: pointer;
+    visibility: hidden;
   }
   .result {
     font-weight: bold;
     margin-top: 40px;
+  }
+
+  #app {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  h1 {
+    line-height: 2rem;
+    text-align: center;
+    color: #b4b4b4;
   }
     """
 
