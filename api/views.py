@@ -56,7 +56,7 @@ class GenerateResponse(APIView):
 
 
 def generate_script(text):
-    return format(text.capitalize()) + """ Answer only in Javascript, no script tags, no additional text. It is very important that you respond only in Javascript and nothing else and only in Javascript in a way that it can be copy pasted directly to this website. Every comment, helpful text or anything else that is not Javascript must be added inside Javascript comment tags. Do not use images, gifs or any other media, create everything yourself in javascript code. If you are not capable of doing what's asked then add a red text on top of the page saying: I am not capable of doing what you asked, sorry! 
+    return """ Create a Javascript code response with a prompt given after this sign: ^. Rules for the response are: Answer only in Javascript, no script tags, no additional text. It is very important that you respond only in Javascript and nothing else and only in Javascript in a way that it can be copy pasted directly to this website. Every style you add must be done in Javascript. Every comment, helpful text or anything else that is not Javascript must be added inside Javascript comment tags. Do not use images, gifs or any other media, create everything yourself in javascript code. If you are not capable of doing what's asked then add a red text on top of the page saying: I am not capable of doing what you asked, sorry! 
 Html for the page is: <body>
     <div id='main'>
         <div id='app'><div class='center'><div><h1>Make a wish:</h1><form><input type='text' name='animal' placeholder='Create a red ball with up and down bouncing animation..' required=''><input type='submit' value='Send'></form></div></div></div>
@@ -150,7 +150,7 @@ Css for the page is:
     text-align: center;
     color: #b4b4b4;
   }
-    """
+    ^""" + format(text.capitalize())
 
 
 # """<body>

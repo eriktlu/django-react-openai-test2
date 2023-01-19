@@ -5,6 +5,7 @@ const HomePage = (props) => {
 
     const[userText, setUserText] = useState('');
     const[response, setResponse] = useState('');
+    const[formState, setFormState] = useState(false);
 
     const handleTextChange = (event) => {
         setUserText(event.target.value);
@@ -16,6 +17,7 @@ const HomePage = (props) => {
 
     const generateNamesClicked = (event) => {
         event.preventDefault();
+        setFormState(true)
 
         const requestOptions = {
             method: "POST",
@@ -37,6 +39,8 @@ const HomePage = (props) => {
                 // console.log(response);
                 var theInstructions = data;
                 var F=new Function (theInstructions);
+
+                setFormState(false)
                 return(F());
             })      
     }
@@ -47,7 +51,7 @@ const HomePage = (props) => {
                 <h1>Make a wish:</h1>
                 <form onSubmit={generateNamesClicked}>
                     <input type="text" name="animal" placeholder="Create a red ball with up and down bouncing animation.." onChange={handleTextChange} required />
-                    <input type="submit" value="Send" />
+                    <input type="submit" value="Send" disabled={formState} />
                 </form>
             </div>   
         );
