@@ -12,13 +12,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-pjk8)-0bi=eg$qv1np+618cl@t+n9w3_c)x!@_4p6)9j#@5wnb'
 
 #OPEN AI API KEY
-OPENAI_KEY = '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'
+OPENAI_KEY = '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'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['https://django-react-openai-test.herokuapp.com/', 'django-react-openai-test.herokuapp.com']
-CSRF_TRUSTED_ORIGINS = ['https://django-react-openai-test.herokuapp.com/', 'django-react-openai-test.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['https://django-react-openai-test.herokuapp.com/']
 
 
 # Application definition
