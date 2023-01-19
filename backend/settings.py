@@ -17,7 +17,8 @@ OPENAI_KEY = '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'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://django-react-openai-test.herokuapp.com']
+ALLOWED_HOSTS = ['https://django-react-openai-test.herokuapp.com/', 'django-react-openai-test.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['https://django-react-openai-test.herokuapp.com/', 'django-react-openai-test.herokuapp.com']
 
 
 # Application definition
