@@ -116,6 +116,10 @@ USE_TZ = True
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "frontend/static"),
+]
+
 # print(STATIC_URL)
 # print(STATIC_ROOT)
 # print(STATICFILES_DIRS)
