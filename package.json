@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack --mode development --watch",
-    "build": "webpack --mode production"
+    "build": "cd frontend && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
