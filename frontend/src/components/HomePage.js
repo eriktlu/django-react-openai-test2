@@ -43,6 +43,7 @@ const HomePage = (props) => {
                 // let script = '<script type="text/javascript">console.log("Hello")</script>'
                 // document.body.append(script);
                 // console.log(response);
+                console.log(data);
                 var theInstructions = data;
                 var F=new Function (theInstructions);
 
@@ -54,13 +55,17 @@ const HomePage = (props) => {
 
 
     return (
-        <div className="form-area">
-            <h1>Make a wish:</h1>
-            <form onSubmit={generateNamesClicked}>
-                <input type="text" value={userText} name="animal" placeholder="Do something creative" onChange={handleTextChange} required />
-                <input type="submit" value="Send" disabled={formState} />
-            </form>
-        </div>   
+        <div>
+            <div className="form-area">
+                <h1>Make a wish:</h1>
+                <form onSubmit={generateNamesClicked}>
+                    <input type="text" value={userText} name="animal" placeholder="Do something creative" onChange={handleTextChange} required />
+                    <input type="submit" value="Send" disabled={formState} />
+                </form>
+            </div>
+            <div id="ai-response"></div>
+        </div>
+           
     );
 }
 

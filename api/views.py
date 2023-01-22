@@ -60,100 +60,104 @@ def generate_script(text):
 </body>
 
 Css for the page is:
-@font-face {
-    font-family: 'ColfaxAI';
-    src: url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff2)
-        format('woff2'),
-      url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff) format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'ColfaxAI';
-    src: url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff2) format('woff2'),
-      url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff) format('woff');
-    font-weight: bold;
-    font-style: normal;
-  }
-  body,
-  input {
-    font-size: 16px;
-    line-height: 24px;
-    color: #353740;
-    font-family: 'ColfaxAI', Helvetica, sans-serif;
-  }
-  body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0;
-    margin: 0;
-    min-height: 100vh;
-    background: radial-gradient(circle, #272b4d 0%, #202123 100%);
-    overflow: hidden;
-  }
-  .icon {
-    width: 34px;
-  }
-  h3 {
-    font-size: 32px;
-    line-height: 40px;
-    font-weight: bold;
-    color: #202123;
-    margin: 16px 0 40px;
-  }
-  form {
-    display: flex;
-    flex-direction: column;
-    width: 320px;
-  }
-  input[type='text'] {
-    padding: 12px 16px;
-    border: 1px solid #10a37f;
-    border-radius: 4px;
-    margin-bottom: 24px;
-  }
-  ::placeholder {
-    color: #8e8ea0;
-    opacity: 1;
-  }
-  input[type='submit'] {
-    padding: 12px 0;
-    color: #fff;
-    background-color: #10a37f;
-    border: none;
-    border-radius: 4px;
-    text-align: center;
-    cursor: pointer;
-    visibility: hidden;
-  }
-  .result {
-    font-weight: bold;
-    margin-top: 40px;
-  }
+body,
+input {
+  font-size: 16px;
+  line-height: 24px;
+  font-family: "ColfaxAI", Helvetica, sans-serif;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle, #272b4d 0%, #202123 100%);
+  overflow: hidden;
+  color: #b4b4b4;
+}
+#ai-response {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+}
+.icon {
+  width: 34px;
+}
+h3 {
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: bold;
+  color: #202123;
+  margin: 16px 0 40px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+}
+input[type="text"] {
+  padding: 12px 16px;
+  border: 1px solid #10a37f;
+  border-radius: 4px;
+  margin-bottom: 24px;
+}
+::placeholder {
+  color: #8e8ea0;
+  opacity: 1;
+}
+input[type="submit"] {
+  padding: 12px 0;
+  color: #fff;
+  background-color: #10a37f;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  visibility: hidden;
+}
+.result {
+  font-weight: bold;
+  margin-top: 250px;
+}
 
-  #main {
-    width: 100%;
-    min-height: 100vh;
-  }
+#main {
+  width: 100%;
+  min-height: 100vh;
+}
 
-  .center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  h1 {
-    line-height: 2rem;
-    text-align: center;
-    color: #b4b4b4;
-  }
+#app {
+  display: flex;
+  justify-content: center;
+}
+
+/* Navigation */
+
+.nav a {
+  text-decoration: none;
+  color: #b4b4b4;
+  text-transform: uppercase;
+  margin-right: 1rem;
+}
+
+.form-area {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h1 {
+  line-height: 2rem;
+  text-align: center;
+  color: #b4b4b4;
+}
   
   Prompt: Add a red text
   Example answer:
   // Javascript
-    const app = document.getElementById('main');
+    const app = document.getElementById('ai-response');
     const message = document.createElement('div');
     message.innerHTML = 'I am so excited to learn Javascript!';
     message.style.color = 'red';
@@ -163,7 +167,7 @@ Css for the page is:
   Prompt: create a red ball with up and down bouncing animation
   Example answer 2:
   // Javascript
-    const app = document.getElementById('main');
+    const app = document.getElementById('ai-response');
     const ball = document.createElement('div');
     ball.style.position = 'absolute';
     ball.style.top = '0px';
@@ -198,7 +202,7 @@ Css for the page is:
   Propmpt: Create a snake game
   Example answer 3:
   // Javascript
-    const app = document.getElementById('main');
+    const app = document.getElementById('ai-response');
     const game = document.createElement('div');
     game.style.position = 'absolute';
     game.style.top = '0px';
@@ -305,7 +309,7 @@ Css for the page is:
 Prompt: Add smiley face to bottom right of screen
 Example answer 4:
   // Javascript
-      const app = document.getElementById('main');
+      const app = document.getElementById('ai-response');
       const smiley = document.createElement('div');
       smiley.style.position = 'absolute';
       smiley.style.bottom = '0px';

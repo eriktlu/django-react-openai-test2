@@ -31,6 +31,11 @@ body {
   overflow: hidden;
   color: #b4b4b4;
 }
+#ai-response {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+}
 .icon {
   width: 34px;
 }
