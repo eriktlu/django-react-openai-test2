@@ -17,7 +17,7 @@ openai.api_key = settings.OPENAI_API_KEY
 from gpt_index import GPTSimpleVectorIndex, SimpleWebPageReader
 
 import os
-os.environ['OPENAI_API_KEY'] = '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'
+os.environ['OPENAI_API_KEY'] = settings.OPENAI_API_KEY
 
 class GenerateWebsiteAskResponse(APIView):
   def post(self, request, format=None):
