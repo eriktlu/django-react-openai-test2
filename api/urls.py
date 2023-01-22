@@ -3,4 +3,5 @@ from .views import *
 
 urlpatterns = [
     path('generate-response', GenerateResponse.as_view()),
+    path('generate-website-ask-response', GenerateWebsiteAskResponse.as_view()),
 ]

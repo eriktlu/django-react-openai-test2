@@ -1,23 +1,30 @@
 import React, { Component, useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 const HomePage = (props) => {
 
     const[userText, setUserText] = useState('');
-    const[response, setResponse] = useState('');
     const[formState, setFormState] = useState(false);
+    const[loading, setLoading] = useState('');
 
     const handleTextChange = (event) => {
         setUserText(event.target.value);
     };
 
-    const handleResponse = (event) => {
-
-    }
+    useEffect(() => {
+        if (loading) {
+            addLoader();
+        }
+        if (!loading) {
+            if(document.getElementById('loader')){
+                document.getElementById('loader').remove();
+            }
+        }
+    }, [loading]);
 
     const generateNamesClicked = (event) => {
         event.preventDefault();
         setFormState(true)
+        setLoading(true)
 
         const requestOptions = {
             method: "POST",
@@ -27,13 +34,12 @@ const HomePage = (props) => {
             }),
         };
 
-        let i;
+        setUserText('')
 
         fetch("/api/generate-response", requestOptions)
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                setResponse(data);
                 // let script = '<script type="text/javascript">console.log("Hello")</script>'
                 // document.body.append(script);
                 // console.log(response);
@@ -41,28 +47,20 @@ const HomePage = (props) => {
                 var F=new Function (theInstructions);
 
                 setFormState(false)
+                setLoading(false)
                 return(F());
             })      
     }
 
-    const renderHomePage = () => {
-        return (
-            <div>
-                <h1>Make a wish:</h1>
-                <form onSubmit={generateNamesClicked}>
-                    <input type="text" name="animal" placeholder="Create a red ball with up and down bouncing animation.." onChange={handleTextChange} required />
-                    <input type="submit" value="Send" disabled={formState} />
-                </form>
-            </div>   
-        );
-    }
 
     return (
-        <Router>
-            <Routes>
-                <Route path='/' element={renderHomePage()}/>
-            </Routes>
-        </Router>
+        <div className="form-area">
+            <h1>Make a wish:</h1>
+            <form onSubmit={generateNamesClicked}>
+                <input type="text" value={userText} name="animal" placeholder="Do something creative" onChange={handleTextChange} required />
+                <input type="submit" value="Send" disabled={formState} />
+            </form>
+        </div>   
     );
 }
 

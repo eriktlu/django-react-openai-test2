@@ -1,56 +1,4 @@
-from django.shortcuts import render
-from django.conf import settings
-
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-
-from django.http import JsonResponse
-
-from .serializers import ResponseSerializer
-
-import openai
-
-openai.api_key = settings.OPENAI_API_KEY
-
-
-from gpt_index import GPTSimpleVectorIndex, SimpleWebPageReader
-
-import os
-os.environ['OPENAI_API_KEY'] = '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'
-
-class GenerateWebsiteAskResponse(APIView):
-  def post(self, request, format=None):
-    user_text = request.data.get('user_text')
-    website = request.data.get('website_url')
-
-    documents = SimpleWebPageReader(html_to_text=True).load_data([website])
-    index = GPTSimpleVectorIndex(documents)
-    response = index.query(user_text, verbose=True)
-
-    data = str(response)
-    print(response)
-    return Response(data, status=status.HTTP_200_OK)
-
-# Create your views here.
-class GenerateResponse(APIView):
-    def post(self, request, format=None):
-        user_text = request.data.get('user_text')
-        response = openai.Completion.create(
-            model="text-davinci-003",
-            prompt=generate_script(user_text),
-            temperature=0.6,
-            max_tokens=1200,
-        )
-        data = response.choices[0].text
-        print(response)
-        return Response(data[data.find('// Javascript'):], status=status.HTTP_200_OK)
-
-def generate_script(text):
-    return """
-    You are an expert web developer. You only know how to code in Javascript. You must answer only in Javascript. You must try to solve every prompt given to you with Javascript only. Use the provided HTML and CSS code to provide a Javascript prompt that will work on that page. Use the provided examples to see how to send back the result. Do not use images, gifs or any other media, everything must be created from scratch using Javascript code. Do not add anything to the middle of the screen unless specifically asked to. If you are not capable of doing what's asked then alert the user in Javascript by saying: I am not capable of that, sorry!
-
-    Html for the page is: <body>
+Html for the page is: <body>
     <div id='main'>
         <div id='app'><div class='center'><div><h1>Make a wish:</h1><form><input type='text' name='animal' placeholder='Create a red ball with up and down bouncing animation..' required=''><input type='submit' value='Send'></form></div></div></div>
     </div>
@@ -90,7 +38,7 @@ Css for the page is:
     margin: 0;
     min-height: 100vh;
     background: radial-gradient(circle, #272b4d 0%, #202123 100%);
-    overflow: hidden;
+    overflow-x: hidden;
   }
   .icon {
     width: 34px;
@@ -137,7 +85,7 @@ Css for the page is:
     min-height: 100vh;
   }
 
-  .center {
+  #app {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -149,7 +97,7 @@ Css for the page is:
     text-align: center;
     color: #b4b4b4;
   }
-  
+
   Prompt: Add a red text
   Example answer:
   // Javascript
@@ -327,5 +275,5 @@ Example answer 4:
     alert('I am not capable of doing that, sorry!');
   // End of Javascript
 
-  Prompt you must answer to: """+ format(text.capitalize())
 
+  You are an expert web developer. You only know how to code in Javascript. You must answer only in Javascript. You must try to solve every prompt given to you with Javascript only. Use the provided HTML and CSS code to provide a Javascript prompt that will work on that page. Use the provided examples to see how to send back the result. Do not use images, gifs or any other media, everything must be created from scratch using Javascript code. Do not add anything to the middle of the screen unless specifically asked to. If you are not capable of doing what's asked then add a red text on top of the page saying: I am not capable of that, sorry!

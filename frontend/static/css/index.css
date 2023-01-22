@@ -5,79 +5,146 @@
       url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff) format("woff");
     font-weight: normal;
     font-style: normal;
-  }
-  @font-face {
-    font-family: "ColfaxAI";
-    src: url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff2) format("woff2"),
-      url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff) format("woff");
-    font-weight: bold;
-    font-style: normal;
-  }
-  body,
-  input {
-    font-size: 16px;
-    line-height: 24px;
-    color: #353740;
-    font-family: "ColfaxAI", Helvetica, sans-serif;
-  }
-  body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0;
-    margin: 0;
-    min-height: 100vh;
-    background: radial-gradient(circle, #272b4d 0%, #202123 100%)
-  }
-  .icon {
-    width: 34px;
-  }
-  h3 {
-    font-size: 32px;
-    line-height: 40px;
-    font-weight: bold;
-    color: #202123;
-    margin: 16px 0 40px;
-  }
-  form {
-    display: flex;
-    flex-direction: column;
-    width: 320px;
-  }
-  input[type="text"] {
-    padding: 12px 16px;
-    border: 1px solid #10a37f;
-    border-radius: 4px;
-    margin-bottom: 24px;
-  }
-  ::placeholder {
-    color: #8e8ea0;
-    opacity: 1;
-  }
-  input[type="submit"] {
-    padding: 12px 0;
-    color: #fff;
-    background-color: #10a37f;
-    border: none;
-    border-radius: 4px;
-    text-align: center;
-    cursor: pointer;
-    visibility: hidden;
-  }
-  .result {
-    font-weight: bold;
-    margin-top: 40px;
-  }
+}
 
-  #app {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+@font-face {
+  font-family: "ColfaxAI";
+  src: url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff2) format("woff2"),
+    url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff) format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+body,
+input {
+  font-size: 16px;
+  line-height: 24px;
+  font-family: "ColfaxAI", Helvetica, sans-serif;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle, #272b4d 0%, #202123 100%);
+  overflow: hidden;
+  color: #b4b4b4;
+}
+.icon {
+  width: 34px;
+}
+h3 {
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: bold;
+  color: #202123;
+  margin: 16px 0 40px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+}
+input[type="text"] {
+  padding: 12px 16px;
+  border: 1px solid #10a37f;
+  border-radius: 4px;
+  margin-bottom: 24px;
+}
+::placeholder {
+  color: #8e8ea0;
+  opacity: 1;
+}
+input[type="submit"] {
+  padding: 12px 0;
+  color: #fff;
+  background-color: #10a37f;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  visibility: hidden;
+}
+.result {
+  font-weight: bold;
+  margin-top: 250px;
+}
+
+#main {
+  width: 100%;
+  min-height: 100vh;
+}
+
+#app {
+  display: flex;
+  justify-content: center;
+}
+
+/* Navigation */
+
+.nav a {
+  text-decoration: none;
+  color: #b4b4b4;
+  text-transform: uppercase;
+  margin-right: 1rem;
+}
+
+.form-area {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h1 {
+  line-height: 2rem;
+  text-align: center;
+  color: #b4b4b4;
+}
+
+.container {
+  width: 100%;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .container {
+    max-width: 100%;
+    padding: 0 .5rem;
   }
-  
-  h1 {
-    line-height: 2rem;
-    text-align: center;
-    color: #b4b4b4;
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .container {
+    max-width: 540px;
   }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+}
