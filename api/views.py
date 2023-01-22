@@ -78,9 +78,12 @@ body {
   color: #b4b4b4;
 }
 #ai-response {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
 }
 .icon {
   width: 34px;
