@@ -7,6 +7,7 @@ export default function NavBar(props) {
           <ul>
             <Link to="/">Home</Link>
             <Link to="/ask-page">PageAsk</Link>
+            <Link to="/chat-bot">ChatBot</Link>
           </ul>
         </nav>
       )

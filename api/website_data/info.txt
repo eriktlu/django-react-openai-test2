@@ -1,0 +1,15 @@
+PixelPro Web Solutions
+
+Building your online presence, one pixel at a time.
+
+At PixelPro Web Solutions, we are a team of highly skilled and experienced web developers who are dedicated to delivering exceptional results and providing our clients with the best possible service. We specialize in creating custom web applications from scratch using the latest technologies such as React for the frontend and Django for the backend. Our goal is to help businesses and individuals take their online presence to the next level by providing them with a unique and fully functional website tailored to their specific requirements. With years of experience and a proven track record of success, you can trust us to turn your web development dreams into reality.
+
+At PixelPro Web Solutions, we offer a wide range of web development services to help businesses and individuals take their online presence to the next level. Our services include: Website design and development, E-commerce solutions, Custom web applications, Web maintenance and updates, Search engine optimization (SEO). Our team of highly skilled web developers is committed to delivering exceptional results and providing our clients with the best possible service. Whether you're looking to create a new website or update an existing one, we have the experience and expertise to help you achieve your goals.
+
+At PixelPro Web Solutions, we understand that every client has unique needs and budget constraints. That's why we offer flexible pricing options to fit your specific project and budget. Our prices are based on the complexity of the project, the technologies used, and the time required to complete the project. Here are some rough estimates for our services: Website design and development: Starting at $3000, E-commerce solutions: Starting at $5000, Custom web applications: Starting at $7000, Web maintenance and updates: Starting at $500 per month, Search engine optimization (SEO): Starting at $1000 per month. We believe in being transparent with our clients and will provide you with a detailed proposal outlining the scope of the project and the cost before we begin any work. We also offer ongoing maintenance and support packages to ensure your website stays up to date and runs smoothly. Contact us today to schedule a consultation and receive a personalized quote for your project.
+
+Additionally, link to other pages below when asked about.
+
+<a href="/">Home</a> -> Link to a page where AI will generate website
+
+<a href="/">PAGEASK</a> -> Link to a page where user can add website url and ask a question about that website

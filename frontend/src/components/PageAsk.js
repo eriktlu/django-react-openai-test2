@@ -65,8 +65,8 @@ const PageAsk = (props) => {
             <div className="form-area box-up">
                 <h1>Ask a Site:</h1>
                 <form onSubmit={generateResult}>
-                    <input type="text" value={website} name="animal" placeholder="https://en.wikipedia.org/wiki/Pepe_the_Frog" onChange={handleWebsiteChange} required />
-                    <input type="text" value={userText} name="animal" placeholder="Who created Pepe the Frog?" onChange={handleTextChange} required />
+                    <input type="text" value={website} name="website" placeholder="https://en.wikipedia.org/wiki/Pepe_the_Frog" onChange={handleWebsiteChange} required />
+                    <input type="text" value={userText} name="question" placeholder="Who created Pepe the Frog?" onChange={handleTextChange} required />
                     <input type="submit" value="Send" disabled={formState} />
                 </form>
             </div>

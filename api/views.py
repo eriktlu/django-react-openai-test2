@@ -14,7 +14,7 @@ import openai
 openai.api_key = settings.OPENAI_API_KEY
 
 
-from gpt_index import GPTSimpleVectorIndex, SimpleWebPageReader
+from gpt_index import GPTSimpleVectorIndex, SimpleWebPageReader, SimpleDirectoryReader
 
 import os
 os.environ['OPENAI_API_KEY'] = settings.OPENAI_API_KEY
@@ -32,7 +32,18 @@ class GenerateWebsiteAskResponse(APIView):
     print(response)
     return Response(data, status=status.HTTP_200_OK)
 
-# Create your views here.
+class GenerateChatResponse(APIView):
+  def post(self, request, format=None):
+    question = request.data.get('question')
+
+    documents = SimpleDirectoryReader('api\website_data').load_data()
+    index = GPTSimpleVectorIndex(documents)
+    response = index.query(question, verbose=True)
+
+    data = str(response)
+    print(response)
+    return Response(data, status=status.HTTP_200_OK)
+
 class GenerateResponse(APIView):
     def post(self, request, format=None):
         user_text = request.data.get('user_text')
