@@ -14,6 +14,9 @@
   font-weight: bold;
   font-style: normal;
 }
+html {
+  scroll-behavior: smooth;
+}
 body,
 input {
   font-size: 16px;
@@ -29,6 +32,7 @@ body {
   min-height: 100vh;
   background: radial-gradient(circle, #272b4d 0%, #202123 100%);
   overflow: hidden;
+  overflow-x: hidden;
   color: #b4b4b4;
 }
 #ai-response {
@@ -49,10 +53,14 @@ h3 {
   color: #202123;
   margin: 16px 0 40px;
 }
+ul {
+  list-style: none;
+}
 form {
   display: flex;
   flex-direction: column;
   width: 320px;
+  position: relative;
 }
 input[type="text"] {
   padding: 12px 16px;
@@ -84,7 +92,7 @@ input[type="submit"] {
 }
 .result {
   font-weight: bold;
-  margin-top: 250px;
+  padding-top: 250px;
 }
 
 #main {
@@ -92,18 +100,30 @@ input[type="submit"] {
   min-height: 100vh;
 }
 
-#app {
+/* #app, .appBox {
   display: flex;
-  justify-content: center;
-}
+  flex-direction: column;
+  align-items: center;
+} */
 
 /* Navigation */
+
+.nav {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+}
+
+.nav ul {
+  padding: 0;
+  margin: 0;
+}
 
 .nav a {
   text-decoration: none;
   color: #b4b4b4;
   text-transform: uppercase;
-  margin-right: 1rem;
+  margin-right: 2rem;
 }
 
 .form-area {
@@ -111,6 +131,11 @@ input[type="submit"] {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 99;
+}
+
+form > input {
+  margin-bottom: 1rem;
 }
 
 h1 {
@@ -121,6 +146,7 @@ h1 {
 
 .container {
   width: 100%;
+  margin: 0 auto;
 }
 
 /* Extra small devices (phones, 600px and down) */
@@ -175,10 +201,16 @@ h1 {
 
 /* Chat */
 
+p, span {
+  color: #d5d5d5;
+}
+
 #chatButton {
   position: fixed;
   bottom: 20px;
   right: 20px;
+  cursor: pointer;
+  transform-origin: bottom right;
 }
 
 #chatButton > svg {
@@ -198,6 +230,7 @@ h1 {
   position: absolute;
   top: 5px;
   right: 5px;
+  cursor: pointer;
 }
 
 .chat-header {
@@ -262,4 +295,302 @@ h1 {
 .chat-answer {
   color: #8d8d8d;
   margin-bottom: 0.5rem;
+}
+
+.header {
+  display: flex;
+  height: 90vh;
+  gap: 2rem;
+  align-items: center;
+}
+
+.header-left {
+  width: 50%;
+}
+
+.header-right {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-right img {
+  width: 80%;
+  height: 80%;
+}
+
+.header-left h1 {
+  text-align: left;
+  margin-bottom: .5rem;
+  font-size: 5rem;
+  line-height: 5rem;
+  color: #ff7c7c;
+}
+
+.secondary-header {
+  color: #ff7c7c;
+  text-align: center;
+  font-size: 3rem;
+}
+
+.header-descriptive {
+  margin-top: .5rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  color: #f5f5f5;;
+}
+
+.show-more {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scale(2);
+  cursor: pointer;
+}
+
+.show-more > svg {
+  transform: translate(0px, 0px);
+}
+
+.text-content {
+  background: #121212;
+}
+
+.content-block { 
+  padding: 4rem;
+}
+
+.content-desc {
+  text-align: center;
+  max-width: 70%;
+  margin: 0 auto;
+}
+
+.services {
+  display: flex;
+  gap: 2%;
+  padding: 0;
+  justify-content: center;
+  padding: 4rem 0 0;
+  margin: 0;
+}
+
+.service {
+  width: 18%;
+  height: 300px;
+  text-align: center;
+  background: #d5d5d5;
+  border-radius: 2px;
+  padding: 2rem 0;
+}
+
+.service-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.price-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem;
+  height: 100%;
+}
+
+.service span {
+  color: #121212;
+}
+
+.service a {
+  color: #272b4d;
+  font-weight: 600;
+}
+
+.service .services-image {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.service .services-image img {
+  width: 80%;
+  height: 80%;
+}
+
+.prices {
+  padding-bottom: 4rem;
+}
+
+.prices .prices-image {
+  display: flex;
+  height: 40%;
+  padding-bottom: 1rem;
+}
+
+.prices span, .price a {
+  height: 20%;
+  display: flex;
+  justify-content: center;
+}
+
+.price a > div {
+  align-self: flex-end;
+}
+
+.price-starting {
+  padding-top: 1rem;
+}
+
+
+.who-we-are .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.block-left {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.block-left img {
+  width: 70%;
+  height: 70%;
+  filter: contrast(0.2);
+}
+
+.block-right {
+  width: 50%;
+}
+
+.block-right .secondary-header {
+  text-align: left;
+}
+
+.block-right .content-desc {
+  text-align: left;
+  max-width: 100%;
+}
+
+
+
+.circles {
+  width: 70%;
+  padding-bottom: 70%;
+  position: relative;
+  perspective: 50000px;
+  color: #61dafb;
+}
+
+.circles span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  background: currentColor;
+  width: 18.4%;
+  height: 18.4%;
+  border-radius: 50%;
+}
+
+.circles div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-left: 13.32px solid;
+  border-right: 5.123076px solid;
+  border-top: 13.32px solid transparent;
+  border-radius: 100%;
+}
+
+.circles div:nth-child(1) {
+  animation: anim-1 2s linear infinite;
+}
+
+.circles div:nth-child(2) {
+  animation: anim-2 2s linear infinite;
+}
+
+.circles div:nth-child(3) {
+  animation: anim-3 2s linear infinite;
+}
+
+@keyframes anim-1 {
+  from {
+    transform: rotateZ(120deg) rotateX(66deg) rotateZ(0);
+  }
+  to {
+    transform: rotateZ(120deg) rotateX(66deg) rotateZ(360deg);
+  }
+}
+
+@keyframes anim-2 {
+  from {
+    transform: rotateZ(240deg) rotateX(66deg) rotateZ(0);
+  }
+  to {
+    transform: rotateZ(240deg) rotateX(66deg) rotateZ(360deg);
+  }
+}
+
+@keyframes anim-3 {
+  from {
+    transform: rotateZ(360deg) rotateX(66deg) rotateZ(0);
+  }
+  to {
+    transform: rotateZ(360deg) rotateX(66deg) rotateZ(360deg);
+  }
+}
+
+
+
+.loader {
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  bottom: -150px;
+}
+
+.loading {
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  border: .25rem solid rgba(255,255,255, 0.2);
+  border-top-color: rgb(255,255,255);
+  animation: spin 1s infinite linear;
+  position: absolute;
+  top: 17px;
+  left: 10px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+@media only screen and (max-width: 850px) {
+  .header-left { 
+    width: 100%;
+  }
+  .header-right {
+    display: none;
+  }
 }

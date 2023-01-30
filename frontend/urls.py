@@ -7,4 +7,5 @@ urlpatterns = [
     path('', index, name=''),
     path('ask-page', index),
     path('chat-bot', index),
+    path('document-read', index),
 ]

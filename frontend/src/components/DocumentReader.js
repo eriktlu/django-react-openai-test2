@@ -1,20 +1,20 @@
 import React, { Component, useState, useEffect } from "react";
 import Loader from './Loader.js';
 
-const PageAsk = (props) => {
-    const[website, setWebsite] = useState('');
+const DocumentReader = (props) => {
     const[userText, setUserText] = useState('');
     const[formState, setFormState] = useState(false);
     const[loading, setLoading] = useState(false);
     const[result, setResult] = useState('');
     const[csrftoken, setCsrftoken] = useState('');
+    const[userFile, setUserFile] = useState('');
 
     const handleTextChange = (event) => {
         setUserText(event.target.value);
     };
 
-    const handleWebsiteChange = (event) => {
-        setWebsite(event.target.value);
+    const handleFileChange = (event) => {
+        setUserFile(event.target.files[0]);
     };
 
     const moveBox = () => {
@@ -48,7 +48,7 @@ const PageAsk = (props) => {
         document.querySelector('body').style.overflow = 'hidden';
         let timeline = gsap.timeline({ defaults: { duration: 1 }})
         timeline
-            .fromTo('.form-area', { y: '100vh'}, { y: 0, ease: 'elastic.out(1, 0.4)', duration: 1 })
+            .fromTo('.form-area', { y: '100vh'}, { y: 0, ease: 'elastic.out(1, 0.4)', duration: 1, yPercent: -50 })
 
         setCsrftoken(getCookie('csrftoken'));
     }, []);
@@ -64,24 +64,24 @@ const PageAsk = (props) => {
 
     const generateResult = (event) => {
         event.preventDefault();
-        setFormState(true)
-        setLoading(true)
-        textOut()
-        moveBox()
+        setFormState(true);
+        setLoading(true);
+        textOut();
+        moveBox();
+        
+        let data = new FormData();
+        data.append('user_text', userText);
+        data.append('user_file', userFile);
+        console.log(data);
 
         const requestOptions = {
             method: "POST",
-            headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrftoken },
-            body: JSON.stringify({
-                user_text: userText,
-                website_url: website,
-            }),
+            body: data,
         };
 
         setUserText('');
-        setWebsite('');
 
-        fetch("/api/generate-website-ask-response", requestOptions)
+        fetch("/api/document-read", requestOptions)
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
@@ -99,10 +99,10 @@ const PageAsk = (props) => {
     return (
         <div>
             <div className="form-area box-up">
-                <h1>Ask a Site:</h1>
+                <h1>Ask a Document:</h1>
                 <form onSubmit={generateResult}>
-                    <input type="text" value={website} name="website" placeholder="https://en.wikipedia.org/wiki/Pepe_the_Frog" onChange={handleWebsiteChange} required />
-                    <input type="text" value={userText} name="question" placeholder="Who created Pepe the Frog?" onChange={handleTextChange} required />
+                    <input type="file" accept=".doc,.docx,application/msword,application/pdf, text/csv, application/vnd.ms-excel, .txt" name="document" onChange={handleFileChange} />
+                    <input type="text" value={userText} name="question" placeholder="Summarize this document" onChange={handleTextChange} required />
                     <input type="submit" value="Send" disabled={formState} />
                     <Loader />
                 </form>
@@ -115,4 +115,4 @@ const PageAsk = (props) => {
     );
 }
 
-export default PageAsk;
+export default DocumentReader;

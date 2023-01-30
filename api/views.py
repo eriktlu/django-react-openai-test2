@@ -9,7 +9,12 @@ from django.http import JsonResponse
 
 from .serializers import ResponseSerializer
 
+import docx2txt
+from pypdf import PdfReader
+
 import openai
+
+import tempfile
 
 openai.api_key = settings.OPENAI_API_KEY
 
@@ -44,18 +49,39 @@ class GenerateChatResponse(APIView):
     print(response)
     return Response(data, status=status.HTTP_200_OK)
 
+class GenerateDocumentResponse(APIView):
+  def post(self, request, format=None):
+    user_text = request.data.get('user_text')
+    print(user_text)
+    user_file = request.FILES.get('user_file')
+    with tempfile.TemporaryDirectory() as tmpdirname:
+      dest = tmpdirname
+      print(dest)
+
+      f = open(os.path.join(tmpdirname, str(user_file)), 'wb')
+      f.write(user_file.read())
+
+      documents = SimpleDirectoryReader(dest).load_data()
+      index = GPTSimpleVectorIndex(documents)
+      response = index.query(user_text, verbose=True)
+
+      data = str(response)
+      print(response)
+      f.close()
+      return Response(data, status=status.HTTP_200_OK)
+
 class GenerateResponse(APIView):
     def post(self, request, format=None):
-        user_text = request.data.get('user_text')
-        response = openai.Completion.create(
-            model="text-davinci-003",
-            prompt=generate_script(user_text),
-            temperature=0.6,
-            max_tokens=1200,
-        )
-        data = response.choices[0].text
-        print(response)
-        return Response(data[data.find('// Javascript'):], status=status.HTTP_200_OK)
+      user_text = request.data.get('user_text')
+      response = openai.Completion.create(
+          model="text-davinci-003",
+          prompt=generate_script(user_text),
+          temperature=0.6,
+          max_tokens=1200,
+      )
+      data = response.choices[0].text
+      print(response)
+      return Response(data[data.find('// Javascript'):], status=status.HTTP_200_OK)
 
 def generate_script(text):
     return """
