@@ -9,9 +9,6 @@ from django.http import JsonResponse
 
 from .serializers import ResponseSerializer
 
-import docx2txt
-from pypdf import PdfReader
-
 import openai
 import whisper
 
@@ -33,7 +30,7 @@ class GenerateWebsiteAskResponse(APIView):
 
     documents = SimpleWebPageReader(html_to_text=True).load_data([website])
     index = GPTSimpleVectorIndex(documents)
-    response = index.query(user_text, verbose=True)
+    response = index.query(user_text)
 
     data = str(response)
     print(response)
@@ -45,7 +42,7 @@ class GenerateChatResponse(APIView):
 
     documents = SimpleDirectoryReader('api\website_data').load_data()
     index = GPTSimpleVectorIndex(documents)
-    response = index.query(question, verbose=True)
+    response = index.query(question)
 
     data = str(response)
     print(response)
@@ -80,7 +77,6 @@ class GenerateAudioTranscription(APIView):
 class GenerateDocumentResponse(APIView):
   def post(self, request, format=None):
     user_text = request.data.get('user_text')
-    print(user_text)
     user_file = request.FILES.get('user_file')
     with tempfile.TemporaryDirectory() as tmpdirname:
       dest = tmpdirname
@@ -91,7 +87,7 @@ class GenerateDocumentResponse(APIView):
 
       documents = SimpleDirectoryReader(dest).load_data()
       index = GPTSimpleVectorIndex(documents)
-      response = index.query(user_text, verbose=True)
+      response = index.query(user_text)
 
       data = str(response)
       print(response)
