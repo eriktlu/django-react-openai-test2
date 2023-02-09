@@ -8,4 +8,5 @@ urlpatterns = [
     path('ask-page', index),
     path('chat-bot', index),
     path('document-read', index),
+    path('ptl-audio', index),
 ]

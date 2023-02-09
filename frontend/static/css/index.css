@@ -1,3 +1,12 @@
+:root {
+	--d: 2500ms;
+	--angle: 90deg;
+	--gradX: 100%;
+	--gradY: 50%;
+	--c1: rgba(168, 239, 255, 1);
+	--c2: rgba(168, 239, 255, 0.1);
+}
+
 @font-face {
     font-family: "ColfaxAI";
     src: url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff2)
@@ -31,7 +40,6 @@ body {
   margin: 0;
   min-height: 100vh;
   background: radial-gradient(circle, #272b4d 0%, #202123 100%);
-  overflow: hidden;
   overflow-x: hidden;
   color: #b4b4b4;
 }
@@ -593,4 +601,72 @@ p, span {
   .header-right {
     display: none;
   }
+}
+
+
+
+
+/* PTL Audio */
+
+.start-button-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.start-button-container button {
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  /* border: 1px solid #080828; */
+  border: none;
+  background: rgb(214 214 214);
+  cursor: pointer;
+  animation: gradient 3s ease infinite;
+  animation-play-state: paused;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.recBorder {
+  position: absolute;
+  left: 50%;
+  top: -3px;
+  height: 106px;
+  width: 106px;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  border-radius: 50%;
+  transform: rotate(0deg) translateX(-50%);
+  transform-origin: left;
+  z-index: -1;
+  animation: rotateElement 3s linear infinite;
+  animation-play-state: paused;
+}
+
+.start-button-container button:hover + .recBorder {
+  animation-play-state: running;
+}
+
+.start-button-container button:hover {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  animation-play-state: running;
+  background-size: 400% 400%;
+}
+
+@keyframes rotateElement {
+	100% {
+		transform: rotate(360deg) translateX(-50%);
+	}
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'openai',
     'gpt_index',
+    'whisper',
 ]
 
 MIDDLEWARE = [

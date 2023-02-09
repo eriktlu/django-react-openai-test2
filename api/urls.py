@@ -6,4 +6,5 @@ urlpatterns = [
     path('generate-website-ask-response', GenerateWebsiteAskResponse.as_view()),
     path('generate-chat-response', GenerateChatResponse.as_view()),
     path('document-read', GenerateDocumentResponse.as_view()),
+    path('generate-audio-transcription', GenerateAudioTranscription.as_view()),
 ]

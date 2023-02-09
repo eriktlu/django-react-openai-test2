@@ -13,6 +13,7 @@ import docx2txt
 from pypdf import PdfReader
 
 import openai
+import whisper
 
 import tempfile
 
@@ -22,6 +23,7 @@ openai.api_key = settings.OPENAI_API_KEY
 from gpt_index import GPTSimpleVectorIndex, SimpleWebPageReader, SimpleDirectoryReader
 
 import os
+import os.path
 os.environ['OPENAI_API_KEY'] = settings.OPENAI_API_KEY
 
 class GenerateWebsiteAskResponse(APIView):
@@ -48,6 +50,32 @@ class GenerateChatResponse(APIView):
     data = str(response)
     print(response)
     return Response(data, status=status.HTTP_200_OK)
+  
+class GenerateAudioTranscription(APIView):
+  def post(self, request, format=None):
+    model = whisper.load_model("base")
+    files = request.FILES.get('audio')
+    with tempfile.TemporaryFile(suffix=os.path.splitext(files.name)[1], delete=False) as f:
+      for chunk in files.chunks():
+        f.write(chunk)
+      f.seek(0)
+    try:
+      audio = whisper.load_audio(f.name)
+    finally:
+      os.unlink(f.name)
+
+    audio = whisper.pad_or_trim(audio)
+    mel = whisper.log_mel_spectrogram(audio).to(model.device)
+    _, probs = model.detect_language(mel)
+    options = whisper.DecodingOptions(language='en', fp16=False)
+    result = whisper.decode(model, mel, options)
+    data = ''
+    if result.no_speech_prob < .6:
+      print(result.text)
+      data = result.text
+
+    return Response(data, status=status.HTTP_200_OK)
+    
 
 class GenerateDocumentResponse(APIView):
   def post(self, request, format=None):
@@ -76,12 +104,21 @@ class GenerateResponse(APIView):
       response = openai.Completion.create(
           model="text-davinci-003",
           prompt=generate_script(user_text),
-          temperature=0.6,
-          max_tokens=1200,
+          temperature=0.3,
+          max_tokens=140,
+          top_p=1,
+          frequency_penalty=0,
+          presence_penalty=1
+
       )
       data = response.choices[0].text
       print(response)
       return Response(data[data.find('// Javascript'):], status=status.HTTP_200_OK)
+
+def ptl_generate_prompt(text):
+  return """
+  I am a highly intelligent question answering bot. If you ask me a question that is rooted in truth, I will give you the answer. If you ask me a question that is nonsense, trickery, or has no clear answer, I will respond with \"Unknown\". Q:
+  """+ format(text)
 
 def generate_script(text):
     return """

@@ -16,6 +16,7 @@ export default function NavBar(props) {
             <Link to="/ask-page">PageAsk</Link>
             <Link to="/chat-bot">ChatBot</Link>
             <Link to="/document-read">DocumentReader</Link>
+            <Link to="/ptl-audio">PTL Audio</Link>
           </ul>
         </nav>
       )
